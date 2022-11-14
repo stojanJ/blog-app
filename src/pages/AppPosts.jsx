@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 import PostsService from "../services/PostsService";
 
 export default function AppPosts(){
@@ -19,7 +20,8 @@ export default function AppPosts(){
               <ul>
                  {posts && posts.map((post) => <li key={post.id}>
                   Title:{post.title},
-                  model:{post.text} </li>)}
+                  model:{post.text}
+                  <Link to={`/posts/${post.id}`}> View Post </Link> </li>)}
              </ul>
            </div>
         </div>

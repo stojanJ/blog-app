@@ -1,10 +1,12 @@
 import React, { useState, useEffect  } from "react";
 import { useHistory } from "react-router-dom";
 import PostsService from "../services/PostsService";
+import { useParams } from "react-router-dom";
 
 
 export default function AppAddPost() {
     const history = useHistory();
+    const { id } = useParams();
     const [newPost, setNewPost] = useState({
         title: '',
         text: '',
@@ -26,8 +28,18 @@ export default function AppAddPost() {
           createdAt:''
         });
       };
-    
 
+      useEffect(() => {
+        const fetchPost = async () => {
+          const { id: _, ...restData } = await PostsService.get(id);
+    
+          setNewPost({ ...restData });
+        };
+    
+        if (id) {
+          fetchPost();
+        }
+      }, [id]);
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -51,6 +63,7 @@ export default function AppAddPost() {
                         setNewPost({ ...newPost, text: target.value })
                     }
                 ></input>
+                <button>{id ? 'Edit' : 'Add new'}</button>
                 <button type="submit" >Submit</button>
                 <button type='button' onClick={ handleReset }> Reset</button>
             </form>

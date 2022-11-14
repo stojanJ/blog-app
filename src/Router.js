@@ -15,6 +15,9 @@ export default function Router() {
       <Route exact path="/add">
         <AppAddPost />
       </Route>
+      <Route exact path="/edit/:id">
+        <AppAddPost />
+      </Route>
     </Switch>
   );
 }

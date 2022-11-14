@@ -12,10 +12,25 @@ class PostsService {
   }
   async add(newPost) {
     const response = await axiosInstance.post('/api/posts', newPost);
-      return response.data;
-    } 
+    return response.data;
+  }
+  async edit(id, newPost) {
+    try {
+      const { data } = await axiosInstance.put(`/api/posts/${id}`, newPost);
 
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
 
+    return null;
+  }
+
+  async delete(id) {
+    const response = await axiosInstance.delete(`/api/posts/${id}`);
+    return response.data;
+  }
+ 
 }
 
 export default new PostsService();

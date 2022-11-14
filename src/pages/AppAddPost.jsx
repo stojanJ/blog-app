@@ -35,6 +35,7 @@ export default function AppAddPost() {
                     required
                     type="text"
                     aria-label="title"
+                    minLength='2'
                     value={newPost.title}
                     onChange={({ target }) =>
                         setNewPost({ ...newPost, title: target.value })
@@ -44,6 +45,7 @@ export default function AppAddPost() {
                     required
                     type="text"
                     aria-label="text"
+                    maxLength='300'
                     value={newPost.text}
                     onChange={({ target }) =>
                         setNewPost({ ...newPost, text: target.value })

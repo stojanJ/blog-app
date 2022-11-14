@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { useHistory } from "react-router-dom";
 import PostsService from "../services/PostsService";
+
 
 export default function AppAddPost() {
     const history = useHistory();
@@ -17,6 +18,15 @@ export default function AppAddPost() {
 
         history.push('/posts');
     };
+
+    const handleReset = () => {
+        setNewPost({
+          title: '',
+          text: '',
+          createdAt:''
+        });
+      };
+    
 
     return (
         <div>
@@ -40,6 +50,7 @@ export default function AppAddPost() {
                     }
                 ></input>
                 <button type="submit" >Submit</button>
+                <button type='button' onClick={ handleReset }> Reset</button>
             </form>
         </div>
     )

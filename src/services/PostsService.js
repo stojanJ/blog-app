@@ -7,12 +7,15 @@ class PostsService {
   }
 
   async get(id) {
-    console.log(id);
     const response = await axiosInstance.get(`/api/posts/${id}`);
-    console.log(response)
     return response.data;
   }
-  
+  async add(newPost) {
+    const response = await axiosInstance.post('/api/posts', newPost);
+      return response.data;
+    } 
+
+
 }
 
 export default new PostsService();
